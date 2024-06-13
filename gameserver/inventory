@@ -1,0 +1,6 @@
+[server_services]
+10.60.57.1
+
+[server_services:vars]
+ansible_user=root
+ansible_connection=ssh

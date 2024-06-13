@@ -1,0 +1,34 @@
+- name: "Set up gameserver"
+  hosts: server_services
+  tasks:
+    - name: Copy public key
+      authorized_key:
+        user: root
+        state: present
+        key: "{{ lookup('file', './files/id_ed25519_giuliano.pub') }}"
+
+    - name: Copy sniffer.sh
+      copy:
+        src: files/sniffer.sh
+        dest: /usr/local/bin/sniffer.sh
+        owner: root
+        group: root
+        mode: '0755'
+
+    - name: Copy sniffer.service
+      copy:
+        src: files/sniffer.service
+        dest: /usr/lib/systemd/system/sniffer.service
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: Reload systemd_service
+      systemd_service:
+        daemon_reload: true
+
+    - name: Enable sniffer.service
+      ansible.builtin.systemd_service:
+        name: sniffer.service
+        state: started
+        enabled: true
