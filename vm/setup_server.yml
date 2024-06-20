@@ -32,3 +32,10 @@
         name: sniffer.service
         state: started
         enabled: true
+    
+    - name: Install firegex
+      shell: 
+        cmd: "sh <(curl -sLf https://pwnzer0tt1.it/firegex.sh)"
+        chdir: "/root/" 
+
+#vim: set tabstop=2:softtabstop=2:shiftwidth=2:noexpandtab 
