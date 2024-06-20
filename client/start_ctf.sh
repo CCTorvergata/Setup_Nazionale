@@ -7,6 +7,9 @@ fi
 
 echo "$1\tgameserver" >> /etc/hosts
 
+#Run Ansible
+ansible-playbook -i /srv/Setup_Nazionale/vm/inventory /srv/Setup_Nazionale/vm/setup_server.yml -k
+
 #Tools Setup
 docker network create --driver=bridge --subnet=172.18.0.0/24 tools_network
 docker start $(docker ps -a -q)
