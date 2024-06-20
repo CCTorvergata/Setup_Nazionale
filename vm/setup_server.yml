@@ -5,7 +5,7 @@
       authorized_key:
         user: root
         state: present
-        key: "{{ lookup('file', '/root/') }}"
+        key: "{{ lookup('file', '/root/id_rsa.pub') }}"
 
     - name: Copy sniffer.sh
       copy:
