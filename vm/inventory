@@ -1,0 +1,6 @@
+[vm]
+gameserver
+
+[vm:vars]
+ansible_user=root
+ansible_connection=ssh
