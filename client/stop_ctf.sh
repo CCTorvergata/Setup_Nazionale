@@ -1,7 +1,10 @@
 #!/bin/sh
 
 systemctl stop get_traffic.service
-ssh-keygen -R $GAMESERVER
+ssh-keygen -R gameserver
+
 docker stop $(docker ps -a -q)
+docker network rm tools_network
+
 rm -rf /srv/traffic
-rm -rf /srv/services
+sed -i '$d' /etc/hosts
