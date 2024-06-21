@@ -1,11 +1,11 @@
-- name: "Set up gameserver"
-  hosts: server_services
+- name: "Set up vm"
+  hosts: vm
   tasks:
     - name: Copy public key
       authorized_key:
         user: root
         state: present
-        key: "{{ lookup('file', '/root/id_rsa.pub') }}"
+        key: "{{ lookup('file', '/root/.ssh/id_rsa.pub') }}"
 
     - name: Copy sniffer.sh
       copy:
