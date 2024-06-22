@@ -47,5 +47,3 @@
       ansible.builtin.command: "python3.10 start.py --build start --port 49123 --psw-no-interactive {{ lookup('file', 'files/password.txt') }}"
       args:
           chdir: /root/firegex
-
-#vim: set tabstop=2:softtabstop=2:shiftwidth=2:noexpandtab 
