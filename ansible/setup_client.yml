@@ -1,0 +1,58 @@
+- name: "Set up local machine"
+  hosts: localhost
+  ansible_connection: local
+  tasks:
+    - name: "Create docker folder in /srv"
+      file:
+        path: "/srv/docker"
+        state: directory
+        mode: '0755'
+        owner: "{{ ansible_user }}"
+      become: yes
+
+    - name: "Clone flagwarehouse"
+      git:
+        repo: https://github.com/CCTorvergata/flagWarehouse.git
+        dest: /srv/docker/flagwarehouse
+
+    - name: "Build and start flagwarehouse server"
+      community.docker.docker_compose_v2:
+        project_src: /srv/docker/flagwarehouse/server
+        build: always
+
+    - name: "Build and start flagwarehouse client"
+      community.docker.docker_compose_v2:
+        project_src: /srv/docker/flagwarehouse/client
+        build: always
+
+    - name: "Clone tulip"
+      git:
+        repo: https://github.com/CCTorvergata/tulip.git
+        dest: /srv/docker/tulip
+
+    - name: "Build and start tulip container"
+      community.docker.docker_compose_v2:
+        project_src: /srv/docker/tulip
+        build: always
+
+    - name: "Copying get_traffic.sh"
+      copy:
+        src: files/client/get_traffic.sh
+        dest: /usr/local/sbin/get_traffic.sh
+        owner: root
+        group: root
+        mode: '0755'
+
+    - name: "Copying get_traffic.service"
+      copy:
+        src: files/client/get_traffic.service
+        dest: /usr/lib/systemd/system/get_traffic.service
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: Enable and start get_traffice.service
+      ansible.builtin.systemd_service:
+        name: get_traffice.service
+        state: started
+        enabled: true    
