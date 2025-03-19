@@ -1,5 +1,5 @@
 [vm]
-gameserver
+vulnbox #Sostituire vulnbox con l'indirizzo IP della vulnbox
 
 [vm:vars]
 ansible_user=root
