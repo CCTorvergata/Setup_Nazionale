@@ -1,12 +1,6 @@
 - name: "Set up vm"
   hosts: vm
   tasks:
-    - name: Copy public key
-      authorized_key:
-        user: root
-        state: present
-        key: "{{ lookup('file', '/root/.ssh/id_rsa.pub') }}"
-
     - name: Copy sniffer.sh
       copy:
         src: files/sniffer.sh
@@ -27,7 +21,7 @@
       systemd_service:
         daemon_reload: true
 
-    - name: Enable sniffer.service
+    - name: Enable and start sniffer.service
       ansible.builtin.systemd_service:
         name: sniffer.service
         state: started
