@@ -5,13 +5,14 @@ if [ "$#" -ne 1 ]; then
     exit 1
 fi
 
-echo "$1\tgameserver" >> /etc/hosts
+echo "$1\tvulnbox" >> /etc/hosts
 
 #Save SSH fingerprint
-ssh -l root gameserver
+ssh -l root vulnbox
 
-#Run Ansible
-ansible-playbook -i /srv/Setup_Nazionale/vm/inventory /srv/Setup_Nazionale/vm/setup_server.yml -k
+#Esecuzione delp playbook Ansible
+cd /srv/Setup_Nazionale/vm
+ansible-playbook setup_server.yml
 
 #Tools Setup
 docker network create --driver=bridge --subnet=172.18.0.0/24 tools_network
@@ -24,5 +25,5 @@ docker compose up -d --build
 cd /srv/docker/webserver
 docker compose up -d
 
-#Clone traffic locally
-sudo systemctl start get_traffic
+#Avvia e abilita il servizio get_traffic
+sudo systemctl enable --now get_traffic.service
