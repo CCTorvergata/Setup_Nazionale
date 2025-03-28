@@ -1,4 +1,4 @@
-- name: "Set up local machine"
+- name: "Set up services for Attack and Defense CTF"
   hosts: localhost
   connection: local
   tasks:
@@ -7,7 +7,7 @@
         path: "/srv/docker"
         state: directory
         mode: '0755'
-        owner: "{{ ansible_user }}"
+        owner: "{{ ansible_env.USER }}"
       become: yes
 
     - name: "Clone flagwarehouse"
