@@ -1,6 +1,6 @@
 - name: "Set up local machine"
   hosts: localhost
-  ansible_connection: local
+  connection: local
   tasks:
     - name: "Create docker folder in /srv"
       file:
@@ -15,24 +15,19 @@
         repo: https://github.com/CCTorvergata/flagWarehouse.git
         dest: /srv/docker/flagwarehouse
 
-    - name: "Build and start flagwarehouse server"
-      community.docker.docker_compose_v2:
-        project_src: /srv/docker/flagwarehouse/server
-        build: always
-
-    - name: "Build and start flagwarehouse client"
-      community.docker.docker_compose_v2:
-        project_src: /srv/docker/flagwarehouse/client
-        build: always
-
     - name: "Clone tulip"
       git:
         repo: https://github.com/CCTorvergata/tulip.git
         dest: /srv/docker/tulip
 
-    - name: "Build and start tulip container"
+    - name: "Clone AODAshboard"
+      git:
+        repo: https://github.com/CCTorvergata/AODashboard.git
+        dest: /srv/docker/dashboard
+
+    - name: "Build and start AODashboard container"
       community.docker.docker_compose_v2:
-        project_src: /srv/docker/tulip
+        project_src: /srv/docker/dashboard
         build: always
 
     - name: "Copying get_traffic.sh"
