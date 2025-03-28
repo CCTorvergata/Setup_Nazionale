@@ -14,16 +14,19 @@
       git:
         repo: https://github.com/CCTorvergata/flagWarehouse.git
         dest: /srv/docker/flagwarehouse
+        force: true
 
     - name: "Clone tulip"
       git:
         repo: https://github.com/CCTorvergata/tulip.git
         dest: /srv/docker/tulip
+        force: true
 
     - name: "Clone AODAshboard"
       git:
         repo: https://github.com/CCTorvergata/AODashboard.git
         dest: /srv/docker/dashboard
+        force: true
 
     - name: "Build and start AODashboard container"
       community.docker.docker_compose_v2:
