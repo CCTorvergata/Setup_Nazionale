@@ -17,7 +17,7 @@
         group: root
         mode: '0644'
 
-    - name: Reload systemd_service
+    - name: Reload systemd services
       systemd_service:
         daemon_reload: true
 
