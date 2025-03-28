@@ -51,6 +51,10 @@
         mode: '0644'
       become: yes
 
+    - name: Reload systemd services
+      systemd_service:
+        daemon_reload: true
+
     - name: Enable and start get_traffic.service
       ansible.builtin.systemd_service:
         name: get_traffice.service
