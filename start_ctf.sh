@@ -10,15 +10,13 @@ echo "$1\tvulnbox" >> /etc/hosts
 #Save SSH fingerprint
 ssh -l root vulnbox
 
-cd /srv/Setup_Nazionale
+cd ansible
 
 #Esecuzione del playbook Ansible per la vulnbox
-ansible-playbook setup_server.yml
-
-#Esecuzione del playbook Ansible per il "client"
-ansible-playbook setup_client.yml
+ansible-playbook setup_vulnbox.yml
 
 #Tools Setup
-docker network create --driver=bridge --subnet=172.18.0.0/24 tools_network
-cd /srv/docker/webserver
+cd /srv/docker/flagwarehouse
+docker compose up -d
+cd /srv/docker/tulip
 docker compose up -d
