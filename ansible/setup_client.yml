@@ -37,6 +37,7 @@
         owner: root
         group: root
         mode: '0755'
+      become: yes
 
     - name: "Copying get_traffic.service"
       copy:
@@ -45,9 +46,11 @@
         owner: root
         group: root
         mode: '0644'
+      become: yes
 
     - name: Enable and start get_traffic.service
       ansible.builtin.systemd_service:
         name: get_traffice.service
         state: started
-        enabled: true    
+        enabled: true
+      become: yes
