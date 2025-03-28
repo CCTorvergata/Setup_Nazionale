@@ -1,6 +1,6 @@
-[vm]
-vulnbox
+[vulnbox]
+#Add ip vulnbox here
 
-[vm:vars]
+[vulnbox:vars]
 ansible_user=root
 ansible_connection=ssh

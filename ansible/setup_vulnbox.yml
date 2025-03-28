@@ -1,5 +1,5 @@
-- name: "Set up vm"
-  hosts: vm
+- name: "Set up vulnobx"
+  hosts: vulnbox
   tasks:
     - name: Copy sniffer.sh
       copy:
