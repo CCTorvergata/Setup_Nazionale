@@ -1,7 +1,7 @@
 #!/bin/sh
 
 systemctl disable --now get_traffic.service
-ssh-keygen -R gameserver
+ssh-keygen -R vulnbox
 
 docker stop $(docker ps -a -q)                 #Questo comando stoppa tutti i container
 docker system prune -a
