@@ -61,3 +61,21 @@
         state: started
         enabled: true
       become: yes
+
+    - name: Copy start-ctf.sh
+      copy:
+        src: files/client/start-ctf.sh
+        dest: /usr/local/sbin/start-ctf.sh
+        owner: root
+        group: root
+        mode: '0755'
+      become: yes
+
+    - name: Copy stop-ctf.sh
+      copy:
+        src: files/client/stop-ctf.sh
+        dest: /usr/local/sbin/stop-ctf.sh
+        owner: root
+        group: root
+        mode: '0755'
+      become: yes
