@@ -32,12 +32,7 @@
         repo: https://github.com/Pwnzer0tt1/firegex
         dest: /root/firegex
 
-    - name: Install python3.10
-      ansible.builtin.apt:
-        name: python3.10
-        state: present
-
     - name: Start firegex
-      ansible.builtin.command: "python3.10 start.py --build start --port 49123 --psw-no-interactive {{ lookup('file', 'files/password.txt') }}"
+      ansible.builtin.command: "python start.py start --port 49123 --startup-psw {{ lookup('file', 'files/password.txt') }}"
       args:
           chdir: /root/firegex
