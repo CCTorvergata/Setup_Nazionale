@@ -33,19 +33,19 @@
         project_src: /srv/docker/dashboard
         build: always
 
-    - name: "Copying get_traffic.sh"
+    - name: "Copying get-traffic.sh"
       copy:
-        src: files/client/get_traffic.sh
-        dest: /usr/local/sbin/get_traffic.sh
+        src: files/client/get-traffic.sh
+        dest: /usr/local/sbin/get-traffic.sh
         owner: root
         group: root
         mode: '0755'
       become: yes
 
-    - name: "Copying get_traffic.service"
+    - name: "Copying get-traffic.service"
       copy:
-        src: files/client/get_traffic.service
-        dest: /usr/lib/systemd/system/get_traffic.service
+        src: files/client/get-traffic.service
+        dest: /usr/lib/systemd/system/get-traffic.service
         owner: root
         group: root
         mode: '0644'
@@ -55,9 +55,9 @@
       systemd_service:
         daemon_reload: true
 
-    - name: Enable and start get_traffic.service
+    - name: Enable and start get-traffic.service
       ansible.builtin.systemd_service:
-        name: get_traffice.service
+        name: get-traffic.service
         state: started
         enabled: true
       become: yes
