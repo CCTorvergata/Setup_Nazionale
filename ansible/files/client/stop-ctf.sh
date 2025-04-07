@@ -1,6 +1,6 @@
 #!/bin/sh
 
-systemctl disable --now get_traffic.service
+systemctl disable --now get-traffic.service
 ssh-keygen -R vulnbox
 
 docker stop $(docker ps -a -q)                 #Questo comando stoppa tutti i container
