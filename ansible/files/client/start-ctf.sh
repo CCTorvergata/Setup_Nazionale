@@ -1,7 +1,7 @@
 #!/bin/sh
 
 if [ "$#" -ne 1 ]; then
-    echo "Usage: ./$1 <vm_ip>"
+    echo "Usage: $0 <vm_ip>"
     exit 1
 fi
 
