@@ -4,3 +4,4 @@
 [vulnbox:vars]
 ansible_user=root
 ansible_connection=ssh
+ansible_password= #Put the root password here
