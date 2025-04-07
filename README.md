@@ -9,3 +9,6 @@ Eseguire:
 Configurare flagwarehouse e tulip (clonati tramite git dallo script setup.sh)
 Poi eseguire:
 ```sudo ./start_ctf.sh```
+E poi:
+```cd ansible```
+```ansible-playbook -i inventory setup_vulnbox.yml```
