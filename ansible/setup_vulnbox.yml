@@ -4,7 +4,7 @@
     - name: Copy sniffer.sh
       copy:
         src: files/sniffer.sh
-        dest: /usr/local/bin/sniffer.sh
+        dest: /usr/local/sbin/sniffer.sh
         owner: root
         group: root
         mode: '0755'

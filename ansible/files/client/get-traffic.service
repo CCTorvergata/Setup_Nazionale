@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=/usr/local/bin/get-traffic.sh
+ExecStart=/usr/local/sbin/get-traffic.sh
 
 [Install]
 WantedBy=multi-user.target
