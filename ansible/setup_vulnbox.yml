@@ -1,6 +1,23 @@
 - name: "Set up vulnobx"
   hosts: vulnbox
   tasks:
+    - name: "Create ssh-key"
+      openssh_keypair:
+        path: /root/.ssh/id_rsa_cc
+        type: rsa
+        size: 2048
+        force: false
+      delegate_to: localhost
+      run_once: true
+      become: yes
+
+    - name: Copy ssh key on the vulnbox
+      authorized_key:
+      user: "{{ remote_user }}"
+      state: present
+      key: "{{ lookup('file', '/root/.ssh/id_rsa_cc.pub') )}}"
+      become: yes
+
     - name: Copy sniffer.sh
       copy:
         src: files/sniffer.sh
