@@ -3,8 +3,8 @@
   roles:
     - vulnbox
 
-#- name: "Set up services for Attack and Defense CTF"
-#  hosts: localhost
-#  connection: local
-#  roles:
-#    - client
+- name: "Set up services for Attack and Defense CTF"
+  hosts: localhost
+  connection: local
+  roles:
+    - client
