@@ -16,6 +16,7 @@
   community.docker.docker_compose_v2:
     project_src: /srv/docker/flagwarehouse
     build: always
+  become: true
 
 - name: "Clone tulip"
   git:
@@ -27,6 +28,7 @@
   community.docker.docker_compose_v2:
     project_src: /srv/docker/tulip
     build: always
+  become: true
 
 - name: "Clone AODashboard"
   git:
@@ -38,6 +40,7 @@
   community.docker.docker_compose_v2:
     project_src: /srv/docker/dashboard
     build: always
+  become: true
 
 - name: "Copying get-traffic.sh"
   copy:
