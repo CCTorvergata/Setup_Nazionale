@@ -12,23 +12,11 @@
     dest: /srv/docker/flagwarehouse
     force: true
 
-- name: "Build and start flagWarehouse"
-  community.docker.docker_compose_v2:
-    project_src: /srv/docker/flagwarehouse
-    build: always
-  become: true
-
 - name: "Clone tulip"
   git:
     repo: https://github.com/CCTorvergata/tulip.git
     dest: /srv/docker/tulip
     force: true
-
-- name: "Build and start Tulip container"
-  community.docker.docker_compose_v2:
-    project_src: /srv/docker/tulip
-    build: always
-  become: true
 
 - name: "Clone AODashboard"
   git:
