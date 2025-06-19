@@ -5,3 +5,4 @@
 ansible_user=root
 ansible_connection=ssh
 ansible_password= #Put the root password here
+ansible_python_interpreter=python3
