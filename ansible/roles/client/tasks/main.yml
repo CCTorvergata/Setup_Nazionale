@@ -51,6 +51,7 @@
 - name: Reload systemd services
   systemd_service:
     daemon_reload: true
+  become: true
 
 - name: Enable and start get-traffic.service
   ansible.builtin.systemd_service:
