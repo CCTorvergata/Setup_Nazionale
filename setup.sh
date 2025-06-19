@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 cd ansible
 
 #Esecuzione del playbook Ansible per il "client"
