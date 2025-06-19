@@ -13,6 +13,5 @@ if [ "$EUID" -ne 0 ]
 fi
 
 mkdir -p $DIRECTORY               # Create target directory if it doesn't exists
-chown tcpdump:tcpdump $DIRECTORY
 
-tcpdump -G $ROTATE_SECONDS -w "$DIRECTORY/$PREFIX%Y-%m-%d_%H.%M.%S.pcap" -i "$INTERFACE" -s 1500 port not 22
+tshark -F pcapng -b interval:15 -w "$DIRECTORY/$PREFIX%Y-%m-%d_%H.%M.%S.pcap" -i "$INTERFACE" -i lo -f "port not 22"

@@ -1,0 +1,10 @@
+- name: "Set up vulnobx"
+  hosts: vulnbox
+  roles:
+    - vulnbox
+
+#- name: "Set up services for Attack and Defense CTF"
+#  hosts: localhost
+#  connection: local
+#  roles:
+#    - client
