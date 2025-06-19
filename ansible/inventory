@@ -3,6 +3,5 @@
 
 [vulnbox:vars]
 ansible_user=root
-ansible_connection=ssh
-ansible_password= #Put the root password here
+ansible_connection=paramiko_ssh
 ansible_python_interpreter=python3
