@@ -32,7 +32,7 @@
 
 - name: "Copying get-traffic.sh"
   copy:
-    src: files/client/get-traffic.sh
+    src: files/get-traffic.sh
     dest: /usr/local/sbin/get-traffic.sh
     owner: root
     group: root
@@ -41,7 +41,7 @@
 
 - name: "Copying get-traffic.service"
   copy:
-    src: files/client/get-traffic.service
+    src: files/get-traffic.service
     dest: /usr/lib/systemd/system/get-traffic.service
     owner: root
     group: root
