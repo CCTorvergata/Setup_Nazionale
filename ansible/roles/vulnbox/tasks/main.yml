@@ -74,3 +74,12 @@
     dest: /root/socat-plus
     force: true
 
+- name: Setup Portainer
+  community.docker.docker_container:
+    name: portainer
+    image: portainer/portainer-ce
+    network_mode: host
+    restart_policy: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /root/portainer-data:/data
