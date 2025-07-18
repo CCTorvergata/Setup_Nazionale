@@ -1,0 +1,5 @@
+- name: "Set up tools for Attack and Defense CTF"
+  hosts: localhost
+  connection: local
+  roles:
+    - client
