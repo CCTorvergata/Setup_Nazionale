@@ -12,10 +12,10 @@ import paramiko
 def parse_args():
     parser = argparse.ArgumentParser(description="")
 
-    parser.add_argument("vulnbox_ip", help="Vulnbox IP address")
+    parser.add_argument("--vulnbox_ip", help="Vulnbox IP address")
 
-    parser.add_argument("vulnbox", action="store_true", help="Setup vulnbox")
-    parser.add_argument("tools", action="store_true", help="Setup tools")
+    parser.add_argument("--vulnbox", action="store_true", help="Setup vulnbox")
+    parser.add_argument("--tools", action="store_true", help="Setup tools")
 
     args = parser.parse_args()
 
@@ -88,13 +88,13 @@ if __name__ == "__main__":
 
         runner = ansible_runner.run(
             private_data_dir="./ansible",
-            playbook="setup_vulnbox.yaml",
+            playbook="setup_vulnbox.yml",
             inventory=inventory
         )
 
         if runner.rc != 0:
             raise RuntimeError(
-                f"The playbook setup_vulnbox.yaml failed with error {runner.rc}")
+                f"The playbook setup_vulnbox.yml failed with error {runner.rc}")
 
     if args.tools:
         inventory = {
@@ -103,18 +103,25 @@ if __name__ == "__main__":
             },
             "all": {
                 "vars": {
+                    "vulnbox_ip": args.vulnbox_ip,
                     "ansible_connection": "local",
                     "ansible_python_interpreter": "python3",
                 }
             }
         }
 
+        become_password = getpass("Sudo password: ")
+
+        os.makedirs('ansible/env', exist_ok=True)
+        with open('ansible/env/passwords', 'w') as f:
+            f.write(become_password + '\n')
+
         runner = ansible_runner.run(
             private_data_dir="./ansible",
-            playbook="setup_tools.yaml",
+            playbook="setup_tools.yml",
             inventory=inventory
         )
 
         if runner.rc != 0:
             raise RuntimeError(
-                f"The playbook setup_tools.yaml failed with error {runner.rc}")
+                f"The playbook setup_tools.yml failed with error {runner.rc}")
