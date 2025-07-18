@@ -1,3 +1,5 @@
 out/
-.ansible
-ansible/.venv
+.venv/
+ansible/artifacts
+ansible/inventory
+ansible/env
