@@ -31,7 +31,7 @@
   become: true
 
 - name: "Copying get-traffic.sh"
-  copy:
+  template:
     src: templates/get-traffic.sh.j2
     dest: /usr/local/sbin/get-traffic.sh
     owner: root
@@ -40,7 +40,7 @@
   become: true
 
 - name: "Copying get-traffic.service"
-  template:
+  copy:
     src: files/get-traffic.service
     dest: /usr/lib/systemd/system/get-traffic.service
     owner: root
