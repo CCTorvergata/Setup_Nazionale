@@ -3,7 +3,7 @@
 #Script per il download dei file pcap tramite rsync
 
 DEST_FOLDER=/srv/traffic
-SERVER=root@vulnbox:/srv/traffic/
+SERVER=root@{{ vulnbox-ip }}:/srv/traffic/
 
 mkdir -p "$DEST_FOLDER"
 
