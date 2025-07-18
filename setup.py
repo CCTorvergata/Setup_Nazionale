@@ -30,7 +30,7 @@ def setup_ssh_key(remote_host):
     # 1. Genera la coppia di chiavi se non esiste già
     if not private_key_path.exists():
         print("[+] Generate new ssh key: id_rsa_ctf")
-        key = paramiko.RSAKey.generate(4096)
+        key = paramiko.RSAKey.generate(2048)
         os.makedirs(ssh_dir, exist_ok=True)
         key.write_private_key_file(str(private_key_path))
         with public_key_path.open('w') as pub_file:
