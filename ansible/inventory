@@ -1,7 +1,0 @@
-[vulnbox]
-#Add ip vulnbox here
-
-[vulnbox:vars]
-ansible_user=root
-ansible_connection=paramiko_ssh
-ansible_python_interpreter=python3
