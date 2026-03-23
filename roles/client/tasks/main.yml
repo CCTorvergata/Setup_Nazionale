@@ -1,37 +1,38 @@
-- name: "Create docker folder in /srv"
-  file:
+---
+- name: Create docker folder in /srv
+  ansible.builtin.file:
     path: "/srv/docker"
     state: directory
     mode: '0755'
     owner: "{{ ansible_env.USER }}"
   become: true
 
-- name: "Clone flagwarehouse"
-  git:
+- name: Clone flagwarehouse
+  ansible.builtin.git:
     repo: https://github.com/CCTorvergata/flagWarehouse.git
     dest: /srv/docker/flagwarehouse
     force: true
 
-- name: "Clone tulip"
-  git:
+- name: Clone tulip
+  ansible.builtin.git:
     repo: https://github.com/CCTorvergata/tulip.git
     dest: /srv/docker/tulip
     force: true
 
-- name: "Clone AODashboard"
-  git:
+- name: Clone AODashboard
+  ansible.builtin.git:
     repo: https://github.com/CCTorvergata/AODashboard.git
     dest: /srv/docker/dashboard
     force: true
 
-- name: "Build and start AODashboard container"
+- name: Build and start AODashboard container
   community.docker.docker_compose_v2:
     project_src: /srv/docker/dashboard
     build: always
   become: true
 
-- name: "Copying get-traffic.sh"
-  copy:
+- name: Copying get-traffic.sh
+  ansible.builtin.copy:
     src: files/get-traffic.sh
     dest: /usr/local/sbin/get-traffic.sh
     owner: root
@@ -39,8 +40,8 @@
     mode: '0755'
   become: true
 
-- name: "Copying get-traffic.service"
-  copy:
+- name: Copying get-traffic.service
+  ansible.builtin.copy:
     src: files/get-traffic.service
     dest: /usr/lib/systemd/system/get-traffic.service
     owner: root
@@ -48,14 +49,10 @@
     mode: '0644'
   become: true
 
-- name: Reload systemd services
-  systemd_service:
-    daemon_reload: true
-  become: true
-
 - name: Enable and start get-traffic.service
   ansible.builtin.systemd_service:
     name: get-traffic.service
     state: started
     enabled: true
+    daemon_reload: true
   become: true
