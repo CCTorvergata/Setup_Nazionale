@@ -14,9 +14,11 @@
     state: present
     key: "{{ lookup('file', '../out/id_rsa_cc.pub') }}"
 
-- name: Ensure tcpdump is installed
+- name: Install requirements
   ansible.builtin.apt:
-    name: tcpdump
+    name:
+      - rsync
+      - tshark
     state: present
     update_cache: true
 
