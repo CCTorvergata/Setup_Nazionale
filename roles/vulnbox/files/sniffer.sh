@@ -14,4 +14,7 @@ fi
 
 mkdir -p $DIRECTORY               # Create target directory if it doesn't exists
 
-tshark -F pcapng -b interval:15 -w "$DIRECTORY/$PREFIX%Y-%m-%d_%H.%M.%S.pcap" -i "$INTERFACE" -i lo -f "port not 22"
+tshark -F pcapng -b interval:15 \
+-i "$INTERFACE" -f "not port 22" \
+-i lo -f "not port 22" \
+-w "$DIRECTORY/$PREFIX%Y-%m-%d_%H.%M.%S.pcap"
