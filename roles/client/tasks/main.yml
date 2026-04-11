@@ -7,6 +7,12 @@
     owner: "{{ ansible_env.USER }}"
   become: true
 
+- name: Start docker engine
+  service:
+    name: docker
+    state: started
+  become: true
+
 - name: Clone flagwarehouse
   ansible.builtin.git:
     repo: https://github.com/CCTorvergata/flagWarehouse.git
