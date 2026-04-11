@@ -3,4 +3,3 @@
 
 [vulnbox:vars]
 ansible_user=root
-ansible_python_interpreter=python3
