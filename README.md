@@ -35,6 +35,8 @@ ognuna di esse verrà aggiunta al file `authorized_keys` della vulnbox.
 
 ## TODO
 
+- Install community.docker collection
+- Solve eventual host key verification rsync error.
 - Check if firegex works
 - Check why firegex restarts multiple times
 - Check if firegex password is being changed
