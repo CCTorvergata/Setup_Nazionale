@@ -1,5 +1,5 @@
 ---
-- name: "Set up vulnobx"
+- name: "Set up vulnbox"
   hosts: vulnbox
   roles:
     - vulnbox
