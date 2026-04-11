@@ -1,18 +1,11 @@
 ---
-- name: Create ssh-key
-  ansible.builtin.openssh_keypair:
-    path: "{{ playbook_dir }}/out/id_rsa_cc"
-    type: rsa
-    size: 2048
-    force: true
-  delegate_to: localhost
-  run_once: true
-
-- name: Copy ssh key on the vulnbox
+- name: Copy ssh keys on the vulnbox
   ansible.builtin.authorized_key:
-    user: "{{ ansible_user }}"
+    user: root
     state: present
-    key: "{{ lookup('file', '../out/id_rsa_cc.pub') }}"
+    key: "{{ lookup('file', item) }}"
+  with_fileglob:
+    - "public-keys/*.pub"
 
 - name: Install requirements
   ansible.builtin.apt:
