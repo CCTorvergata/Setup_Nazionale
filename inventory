@@ -1,5 +1,5 @@
 [vulnbox]
-#Add ip vulnbox here
+#VULNBOX_IP
 
 [vulnbox:vars]
 ansible_user=root
