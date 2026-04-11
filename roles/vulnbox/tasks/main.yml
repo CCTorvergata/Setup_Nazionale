@@ -20,6 +20,7 @@
       - rsync
       - tshark
       - tmux
+      - git
     state: present
     update_cache: true
 
@@ -56,6 +57,13 @@
   ansible.builtin.set_fact:
     password_firegex: "{{ lookup('password', '/dev/null chars=ascii_letters,digits length=16') }}"
 
+- name: Create out directory
+  ansible.builtin.file:
+    path: "{{ playbook_dir }}/out/"
+    state: directory
+    mode: '0700'
+  delegate_to: localhost
+
 - name: Print firegex password on a file
   ansible.builtin.copy:
     dest: "{{ playbook_dir }}/out/password_firegex.txt"
@@ -65,7 +73,7 @@
   run_once: true
 
 - name: Start firegex
-  ansible.builtin.command: "python3 start.py start --port 49123 --startup-psw {{ password_firegex }}"
+  ansible.builtin.command: "python3 run.py start --port 49123 --startup-psw {{ password_firegex }}"
   args:
     chdir: /root/firegex
 
