@@ -10,4 +10,10 @@ ls ./roles/vulnbox/files/public-keys/*.pub 2>&1 > /dev/null || { \
 	exit 1; \
 }
 
+echo "Running playbook..."
+echo
+echo "It will ask you vulnbox's SSH password"
+echo "And the local sudo password"
+echo
+
 ansible-playbook site.yml
