@@ -1,14 +1,41 @@
+
 # Setup_Nazionale
 
-## Installazione iniziale
 
-Eseguire:
-```sudo ./setup.sh```
+## Requisiti
 
-## Iniziare una ctf
-Configurare flagwarehouse e tulip (clonati tramite git dallo script setup.sh)
-Poi eseguire:
-```sudo ./start_ctf.sh```
-E poi:
-```cd ansible```
-```ansible-playbook -i inventory setup_vulnbox.yml```
+- ansible
+- rsync
+- git
+
+
+
+## Configurazione iniziale
+
+### Chiavi SSH
+
+È necessario mettere la propria chiave pubblica SSH all'interno della cartella `./roles/vulnbox/files/public-keys/`.
+è inoltre possibile mettere altre chiavi pubbliche (degli altri giocatori) all'interno di tale cartella,
+ognuna di esse verrà aggiunta al file `authorized_keys` della vulnbox.
+
+### IP della vulnbox
+
+È necessario impostare correttamente l'IP della vulnbox all'interno del file `./inventory`
+
+
+
+## Run del playbook
+
+È sufficente eseguire il comando:
+```bash
+./setup.sh
+```
+
+
+
+## TODO
+
+- Check if firegex works
+- Check why firegex restarts multiple times
+- Check if firegex password is being changed
+- Check if git clone overwrites modified/added files (flagWharehouse)
