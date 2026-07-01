@@ -25,7 +25,7 @@
   run_once: true
 
 - name: Start firegex
-  ansible.builtin.command: "python3 run.py start --port 49123 --startup-psw {{ password_firegex }}"
+  ansible.builtin.command: "python3 run.py start --prebuilt --port 49123 --startup-psw {{ password_firegex }}"
   args:
     chdir: /root/firegex
 
