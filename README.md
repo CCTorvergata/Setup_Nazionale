@@ -35,9 +35,9 @@ ognuna di esse verrà aggiunta al file `authorized_keys` della vulnbox.
 
 ## TODO
 
-- Install community.docker collection
+- Add color to `setup.sh`
 - Solve eventual host key verification rsync error (root).
-- Check if firegex works
-- Check why firegex restarts multiple times
-- Check if firegex password is being changed
+- Check if firegex is already running
+- Move vulnbox repos destination
+- Automatic tar of the challenges
 - Check if git clone overwrites modified/added files (flagWharehouse)
