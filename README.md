@@ -35,9 +35,7 @@ ognuna di esse verrà aggiunta al file `authorized_keys` della vulnbox.
 
 ## TODO
 
-- Add color to `setup.sh`
 - Solve eventual host key verification rsync error (root).
-- Check if firegex is already running
 - Move vulnbox repos destination
 - Automatic tar of the challenges
 - Check if git clone overwrites modified/added files (flagWharehouse)

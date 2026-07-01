@@ -5,5 +5,12 @@
     dest: /root/socat-plus
     force: true
 
+- name: Check if the firegex container is already running
+  community.docker.docker_container_info:
+    name: firegex
+  register: firegex_info
+  changed_when: false
+
 - name: Setup firegex
   include_tasks: "setup-firegex.yml"
+  when: not firegex_info.exists
