@@ -8,4 +8,6 @@
   hosts: localhost
   connection: local
   roles:
-    - client
+    - client/setup-get-traffic
+    - client/start-docker
+    - client/setup-repos
