@@ -35,7 +35,7 @@ ognuna di esse verrà aggiunta al file `authorized_keys` della vulnbox.
 
 ## TODO
 
-- Solve eventual host key verification rsync error (root).
 - Move vulnbox repos destination
 - Automatic tar of the challenges
 - Check if git clone overwrites modified/added files (flagWharehouse)
+- Automatic docker container checkpoint generation (?)

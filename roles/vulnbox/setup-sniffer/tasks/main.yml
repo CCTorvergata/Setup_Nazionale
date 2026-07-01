@@ -1,7 +1,7 @@
 ---
 - name: Copy sniffer.sh
   ansible.builtin.copy:
-    src: files/sniffer.sh
+    src: sniffer.sh
     dest: /usr/local/sbin/sniffer.sh
     owner: root
     group: root
@@ -9,8 +9,8 @@
 
 - name: Copy sniffer.service
   ansible.builtin.copy:
-    src: files/sniffer.service
-    dest: /usr/lib/systemd/system/sniffer.service
+    src: sniffer.service
+    dest: /etc/systemd/system/sniffer.service
     owner: root
     group: root
     mode: '0644'

@@ -8,25 +8,18 @@
   become: true
 
 - name: Copying get-traffic.sh
-  ansible.builtin.copy:
-    src: files/get-traffic.sh
+  ansible.builtin.template:
+    src: get-traffic.sh.j2
     dest: /usr/local/sbin/get-traffic.sh
     owner: root
     group: root
     mode: '0755'
   become: true
 
-- name: Inject vulnbox IP into get-traffic.sh
-  ansible.builtin.replace:
-    path: /usr/local/sbin/get-traffic.sh
-    regexp: 'vulnbox'
-    replace: "{{ groups['vulnbox'][0] }}"
-  become: true
-
 - name: Copying get-traffic.service
   ansible.builtin.copy:
-    src: files/get-traffic.service
-    dest: /usr/lib/systemd/system/get-traffic.service
+    src: get-traffic.service
+    dest: /etc/systemd/system/get-traffic.service
     owner: root
     group: root
     mode: '0644'
