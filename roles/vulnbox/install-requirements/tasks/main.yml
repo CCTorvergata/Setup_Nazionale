@@ -1,0 +1,10 @@
+---
+- name: Install requirements
+  ansible.builtin.apt:
+    name:
+      - rsync
+      - tshark
+      - tmux
+      - git
+    state: present
+    update_cache: true

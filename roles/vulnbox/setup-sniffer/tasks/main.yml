@@ -1,0 +1,23 @@
+---
+- name: Copy sniffer.sh
+  ansible.builtin.copy:
+    src: files/sniffer.sh
+    dest: /usr/local/sbin/sniffer.sh
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Copy sniffer.service
+  ansible.builtin.copy:
+    src: files/sniffer.service
+    dest: /usr/lib/systemd/system/sniffer.service
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Enable and start sniffer.service
+  ansible.builtin.systemd_service:
+    name: sniffer.service
+    state: started
+    enabled: true
+    daemon_reload: true

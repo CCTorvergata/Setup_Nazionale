@@ -2,7 +2,11 @@
 - name: "Set up vulnbox"
   hosts: vulnbox
   roles:
-    - vulnbox
+    - vulnbox/copy-ssh-public-keys
+    - vulnbox/install-requirements
+    - vulnbox/setup-sniffer
+    - vulnbox/setup-repos
+
 
 - name: "Set up services for Attack and Defense CTF"
   hosts: localhost

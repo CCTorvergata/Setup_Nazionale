@@ -1,2 +1,2 @@
 out/
-roles/vulnbox/files/public-keys/
+**/*.pub

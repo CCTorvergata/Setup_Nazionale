@@ -1,0 +1,8 @@
+---
+- name: Copy ssh keys on the vulnbox
+  ansible.builtin.authorized_key:
+    user: root
+    state: present
+    key: "{{ lookup('file', item) }}"
+  with_fileglob:
+    - "*.pub"

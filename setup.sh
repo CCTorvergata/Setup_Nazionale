@@ -5,8 +5,8 @@ grep -q "#VULNBOX_IP" inventory && { \
 	exit 1; \
 }
 
-ls ./roles/vulnbox/files/public-keys/*.pub 2>&1 > /dev/null || { \
-	echo "ERROR: you need to put your SSH public key in the directory './roles/vulnbox/files/public-keys/'"; \
+ls ./roles/vulnbox/copy-ssh-public-keys/files/*.pub 2>&1 > /dev/null || { \
+	echo "ERROR: you need to put your SSH public key in the directory './roles/vulnbox/copy-ssh-public-keys/files'"; \
 	exit 1; \
 }
 
