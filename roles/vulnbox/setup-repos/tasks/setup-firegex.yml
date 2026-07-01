@@ -2,7 +2,7 @@
 - name: Download firegex
   ansible.builtin.git:
     repo: https://github.com/Pwnzer0tt1/firegex
-    dest: /root/firegex
+    dest: "{{ vulnbox_repos_dir }}/firegex"
     force: true
 
 - name: Generate password for firegex
@@ -27,4 +27,4 @@
 - name: Start firegex
   ansible.builtin.command: "python3 run.py start --prebuilt --port 49123 --startup-psw {{ password_firegex }}"
   args:
-    chdir: /root/firegex
+    chdir: "{{ vulnbox_repos_dir }}/firegex"

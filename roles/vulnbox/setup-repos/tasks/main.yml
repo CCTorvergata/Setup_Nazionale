@@ -1,8 +1,14 @@
 ---
+- name: Ensure repos directory exists
+  ansible.builtin.file:
+    path: "{{ vulnbox_repos_dir }}"
+    state: directory
+    mode: '0755'
+
 - name: Download socat-plus
   ansible.builtin.git:
     repo: https://github.com/CCTorVergata/socat-plus
-    dest: /root/socat-plus
+    dest: "{{ vulnbox_repos_dir }}/socat-plus"
     force: true
 
 - name: Check if the firegex container is already running
