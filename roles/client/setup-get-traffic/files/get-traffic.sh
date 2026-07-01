@@ -8,6 +8,6 @@ SERVER=root@vulnbox:/srv/traffic/
 mkdir -p "$DEST_FOLDER"
 
 while :; do
-  rsync -avz "$SERVER" "$DEST_FOLDER"
+  rsync -avz -e "ssh -o StrictHostKeyChecking=no" "$SERVER" "$DEST_FOLDER"
   sleep 10
 done
