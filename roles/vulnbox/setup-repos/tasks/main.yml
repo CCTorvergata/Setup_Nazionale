@@ -1,36 +1,9 @@
 ---
-- name: Download firegex
-  ansible.builtin.git:
-    repo: https://github.com/Pwnzer0tt1/firegex
-    dest: /root/firegex
-    force: true
-
-- name: Generate password for firegex
-  ansible.builtin.set_fact:
-    password_firegex: "{{ lookup('password', '/dev/null chars=ascii_letters,digits length=16') }}"
-
-- name: Create out directory
-  ansible.builtin.file:
-    path: "{{ playbook_dir }}/out/"
-    state: directory
-    mode: '0700'
-  delegate_to: localhost
-
-- name: Print firegex password on a file
-  ansible.builtin.copy:
-    dest: "{{ playbook_dir }}/out/password_firegex.txt"
-    content: "{{ password_firegex }}"
-    mode: "0644"
-  delegate_to: localhost
-  run_once: true
-
-- name: Start firegex
-  ansible.builtin.command: "python3 run.py start --prebuilt --port 49123 --startup-psw {{ password_firegex }}"
-  args:
-    chdir: /root/firegex
-
 - name: Download socat-plus
   ansible.builtin.git:
     repo: https://github.com/CCTorVergata/socat-plus
     dest: /root/socat-plus
     force: true
+
+- name: Setup firegex
+  include_tasks: "setup-firegex.yml"
