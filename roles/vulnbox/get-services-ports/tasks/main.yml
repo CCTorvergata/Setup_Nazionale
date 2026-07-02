@@ -1,0 +1,25 @@
+---
+- name: Get Docker container port mappings
+  community.docker.docker_host_info:
+    containers: true
+    verbose_output: true
+  register: docker_info
+
+- name: Create out directory
+  ansible.builtin.file:
+    path: "{{ playbook_dir }}/out/"
+    state: directory
+    mode: '0700'
+  delegate_to: localhost
+
+- name: Render services_ports.txt locally
+  ansible.builtin.template:
+    src: services_ports.txt.j2
+    dest: "{{ playbook_dir }}/out/services_ports.txt"
+  delegate_to: localhost
+
+- name: Render services_ports_tulip_ready.txt locally
+  ansible.builtin.template:
+    src: services_ports_tulip_ready.txt.j2
+    dest: "{{ playbook_dir }}/out/services_ports_tulip_ready.txt"
+  delegate_to: localhost

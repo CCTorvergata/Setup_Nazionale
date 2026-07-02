@@ -35,8 +35,5 @@ ognuna di esse verrà aggiunta al file `authorized_keys` della vulnbox.
 
 ## TODO
 
-- Add variable to firegex port
-- Add firegex ip:port info to out file
 - Check if git clone overwrites modified/added files (flagWharehouse)
-- Outfile with service name-port (?)
 - Automatic docker container checkpoint generation (?)
