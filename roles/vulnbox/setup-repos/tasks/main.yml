@@ -11,12 +11,12 @@
     dest: "{{ vulnbox_repos_dir }}/socat-plus"
     force: true
 
-- name: Check if the firegex container is already running
-  community.docker.docker_container_info:
-    name: firegex
-  register: firegex_info
+- name: Check if the firegex volume already exists
+  community.docker.docker_volume_info:
+    name: firegex_firegex_data
+  register: firegex_volume_info
   changed_when: false
 
 - name: Setup firegex
   include_tasks: "setup-firegex.yml"
-  when: not firegex_info.exists
+  when: not firegex_volume_info.exists
