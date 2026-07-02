@@ -35,7 +35,7 @@ ognuna di esse verrà aggiunta al file `authorized_keys` della vulnbox.
 
 ## TODO
 
-- Move vulnbox repos destination
-- Automatic tar of the challenges
+- Bash aliases
+- Improve copy-ssh-keys role and remove derprecation warning
 - Check if git clone overwrites modified/added files (flagWharehouse)
 - Automatic docker container checkpoint generation (?)

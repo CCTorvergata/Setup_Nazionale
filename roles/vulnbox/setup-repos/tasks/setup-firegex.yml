@@ -22,7 +22,6 @@
     content: "{{ password_firegex }}"
     mode: "0644"
   delegate_to: localhost
-  run_once: true
 
 - name: Start firegex
   ansible.builtin.command: "python3 run.py start --prebuilt --port 49123 --startup-psw {{ password_firegex }}"

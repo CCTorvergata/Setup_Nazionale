@@ -5,6 +5,7 @@
     - vulnbox/copy-ssh-public-keys
     - vulnbox/install-requirements
     - vulnbox/setup-sniffer
+    - vulnbox/targz-services
     - vulnbox/setup-repos
 
 
