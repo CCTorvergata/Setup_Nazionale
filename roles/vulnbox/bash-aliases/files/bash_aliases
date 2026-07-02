@@ -1,0 +1,111 @@
+
+# Aliases
+
+alias cl="clear"
+alias py="python3"
+alias ".."="cd .."
+alias "..."="cd ../.."
+alias "...."="cd ../../.."
+alias "....."="cd ../../../.."
+alias untar="tar -xvf"
+alias ipt="sudo iptables -nvL --line-numbers"
+alias ip6t="sudo ip6tables -nvL --line-numbers"
+alias dlogs="sudo docker logs -f"
+alias clogs="sudo docker compose logs -f"
+
+
+
+# Colors
+
+alias ip="ip -c"
+alias ls="ls --color=auto"
+alias ll="ls -alF"
+alias la="ls -A"
+alias l="ls -CF"
+
+
+
+# Misspelling
+
+alias ks="ls"
+alias os="ls"
+alias òs="ls"
+alias lc="clear"
+alias LS="echo Please remove CAPS LOCK"
+
+
+
+# Functions
+
+## Lists directories and files by size
+function sz(){
+	if [ -z "$1" ]
+		then
+			du -sh -- * | sort -h
+		else
+			du -sh -- "${1%%+(/)}"/* | sort -h
+	fi
+}
+
+## docker compose up -d in the current directory
+## or in each of the dirs passed by as arguments
+function cup(){
+	startD="$(pwd)"
+	if [ $# -gt 0 ]; then
+		for d in "$@"; do
+			printf " - - - Starting %s - - -\n" "$(basename -- $d)"
+			cd -- "$d" && \
+			{ sudo docker compose up -d; \
+			cd "$startD" > /dev/null; }
+		done
+	else
+		sudo docker compose up -d
+	fi
+}
+
+## docker compose down in the current directory
+## or in each of the dirs passed by as arguments
+function cdw(){
+	startD="$(pwd)"
+	if [ $# -gt 0 ]; then
+		for d in "$@"; do
+			printf " - - - Stopping %s - - -\n" "$(basename -- $d)"
+			cd -- "$d" && \
+			{ sudo docker compose down; \
+			cd "$startD" > /dev/null; }
+		done
+	else
+		sudo docker compose down
+	fi
+}
+
+## docker compose down && docker compose up -d in the current directory
+## or in each of the dirs passed by as arguments
+function crb(){
+	startD="$(pwd)"
+	if [ $# -gt 0 ]; then
+		for d in "$@"; do
+			printf " - - - Restarting %s - - -\n" "$(basename -- $d)"
+			cd -- "$d" && \
+			{ sudo docker compose down && \
+			sudo docker compose up -d; \
+			cd "$startD" > /dev/null; }
+		done
+	else
+		sudo docker compose down && sudo docker compose up -d
+	fi
+}
+
+## Attachs a shell to a docker container
+function cconsole(){
+	sudo docker exec -it "$1" sh -c "if [ -f /bin/bash ]; then bash; else sh; fi"
+}
+
+## Creates a directory with the same name of a given file, and then moves the file inside
+function mkdirr(){
+	local tmpdir="./temporary-directory"
+	mkdir "$tmpdir" && {
+		mv "$1" "$tmpdir"
+		mv "$tmpdir" "$1"
+	} || echo "ERROR: mkdirr failed"
+}

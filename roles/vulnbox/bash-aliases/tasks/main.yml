@@ -1,0 +1,16 @@
+---
+- name: Copy alias file to /root/.bash_aliases
+  ansible.builtin.copy:
+    src: bash_aliases
+    dest: /root/.bash_aliases
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Source alias file in /root/.bashrc
+  ansible.builtin.blockinfile:
+    path: /root/.bashrc
+    block: |
+      if [ -f /root/.bash_aliases ]; then
+        source /root/.bash_aliases
+      fi
