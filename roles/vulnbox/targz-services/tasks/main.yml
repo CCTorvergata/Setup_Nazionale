@@ -4,22 +4,12 @@
     path: /root/services.tar.gz
   register: services_targz
 
-- name: Create .tar.gz of the services
-  ansible.builtin.archive:
-    path: /root/*
-    dest: /root/services.tar.gz
-    format: gz
-  when: not services_targz.stat.exists
+- name: Check for directories in /root
+  ansible.builtin.find:
+    paths: /root
+    file_type: directory
+  register: root_contents
 
-- name: Create out directory
-  ansible.builtin.file:
-    path: "{{ playbook_dir }}/out/"
-    state: directory
-    mode: '0700'
-  delegate_to: localhost
-
-- name: Copy .tar.gz to local machine (./out directory)
-  ansible.builtin.fetch:
-    src: /root/services.tar.gz
-    dest: "{{ playbook_dir }}/out/services.tar.gz"
-    flat: true
+- name: Create .tar.gz if there are directories to compress (only once)
+  include_tasks: "targz-services.yml"
+  when: (root_contents.files | length > 0) and (not services_targz.stat.exists)

@@ -1,0 +1,19 @@
+---
+- name: Create .tar.gz of the services
+  ansible.builtin.archive:
+    path: /root/*
+    dest: /root/services.tar.gz
+    format: gz
+
+- name: Create out directory
+  ansible.builtin.file:
+    path: "{{ playbook_dir }}/out/"
+    state: directory
+    mode: '0700'
+  delegate_to: localhost
+
+- name: Copy .tar.gz to local machine (./out directory)
+  ansible.builtin.fetch:
+    src: /root/services.tar.gz
+    dest: "{{ playbook_dir }}/out/services.tar.gz"
+    flat: true
