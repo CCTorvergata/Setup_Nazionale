@@ -1,8 +1,12 @@
 ---
+- name: Read all public keys
+  ansible.builtin.set_fact:
+    ssh_authorized_keys: "{{ (ssh_authorized_keys | default([])) + [lookup('file', item)] }}"
+  with_fileglob:
+    - "*.pub"
+
 - name: Copy ssh keys on the vulnbox
   ansible.builtin.authorized_key:
     user: root
     state: present
-    key: "{{ lookup('file', item) }}"
-  with_fileglob:
-    - "*.pub"
+    key: "{{ ssh_authorized_keys | join('\n') }}"
