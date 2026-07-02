@@ -29,6 +29,6 @@
   ansible.builtin.systemd_service:
     name: get-traffic.service
     state: started
-    enabled: true
+    enabled: false
     daemon_reload: true
   become: true
