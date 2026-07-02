@@ -1,7 +1,7 @@
 ---
 - name: Create docker folder in /srv
   ansible.builtin.file:
-    path: "/srv/docker"
+    path: "{{ client_repos_dir }}"
     state: directory
     mode: '0755'
     owner: "{{ ansible_facts['env']['USER'] }}"
@@ -10,23 +10,23 @@
 - name: Clone flagwarehouse
   ansible.builtin.git:
     repo: https://github.com/CCTorvergata/flagWarehouse.git
-    dest: /srv/docker/flagwarehouse
+    dest: "{{ client_repos_dir }}/flagwarehouse"
     force: true
 
 - name: Clone tulip
   ansible.builtin.git:
     repo: https://github.com/CCTorvergata/tulip.git
-    dest: /srv/docker/tulip
+    dest: "{{ client_repos_dir }}/tulip"
     force: true
 
 - name: Clone AODashboard
   ansible.builtin.git:
     repo: https://github.com/CCTorvergata/AODashboard.git
-    dest: /srv/docker/dashboard
+    dest: "{{ client_repos_dir }}/dashboard"
     force: true
 
 - name: Build and start AODashboard container
   community.docker.docker_compose_v2:
-    project_src: /srv/docker/dashboard
+    project_src: "{{ client_repos_dir }}/dashboard"
     build: always
   become: true
