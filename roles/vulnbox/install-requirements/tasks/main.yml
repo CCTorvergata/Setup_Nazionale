@@ -6,5 +6,6 @@
       - tshark
       - tmux
       - git
+      - sudo
     state: present
     update_cache: true
