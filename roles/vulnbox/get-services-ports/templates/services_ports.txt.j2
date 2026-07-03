@@ -1,9 +1,9 @@
 {%- set seen = [] -%}
 {%- for c in docker_info.containers -%}
-    {%- set name = c.Names[0] | regex_replace('^/', '') -%}
+    {%- set name = c.Names[0] | regex_replace('^/', '') | regex_replace('-1$', '') -%}
     {%- for p in c.Ports | default([]) -%}
         {%- if p.PublicPort is defined -%}
-            {%- set line = name ~ ':' ~ p.PublicPort ~ '\n' -%}
+            {%- set line = name ~ ': ' ~ p.PublicPort ~ '\n' -%}
             {%- if line not in seen -%}
                 {%- set _ = seen.append(line) -%}
                 {{ line }}

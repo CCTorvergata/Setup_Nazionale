@@ -4,7 +4,7 @@ services = [
     {%- set name = c.Names[0] | regex_replace('^/', '') | regex_replace('-1$', '') -%}
     {%- for p in c.Ports | default([]) -%}
         {%- if p.PublicPort is defined -%}
-            {%- set line = '    {\"ip\": vm_ip, \"port\": ' ~ p.PublicPort ~ ', \"name\": \"' ~ name ~ '\"}' ~ '\n' -%}
+            {%- set line = '    {\"ip\": vm_ip, \"port\": ' ~ p.PublicPort ~ ', \"name\": \"' ~ name ~ '\"}' ~ ',\n' -%}
             {%- if line not in seen -%}
                 {%- set _ = seen.append(line) -%}
                 {{ line }}
