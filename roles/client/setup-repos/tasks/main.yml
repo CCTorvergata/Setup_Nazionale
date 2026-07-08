@@ -24,9 +24,3 @@
     repo: https://github.com/CCTorvergata/AODashboard.git
     dest: "{{ client_repos_dir }}/dashboard"
     force: true
-
-- name: Build and start AODashboard container
-  community.docker.docker_compose_v2:
-    project_src: "{{ client_repos_dir }}/dashboard"
-    build: always
-  become: true
