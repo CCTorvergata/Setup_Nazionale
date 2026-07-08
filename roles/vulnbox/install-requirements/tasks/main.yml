@@ -10,5 +10,8 @@
       - vim
       - nano
       - htop
+      - tree
+      - ripgrep
+      - python3-requests
     state: present
     update_cache: true
