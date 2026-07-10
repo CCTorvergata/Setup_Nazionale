@@ -35,5 +35,8 @@ ognuna di esse verrà aggiunta al file `authorized_keys` della vulnbox.
 
 ## TODO
 
+- Add editable global flags
 - Check if git clone overwrites modified/added files (flagWharehouse)
 - Automatic docker container checkpoint generation (?)
+- No hands setup, launch when vulnbox's pings (?)
+- Ignore remote host verification error
