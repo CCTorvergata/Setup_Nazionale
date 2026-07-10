@@ -1,0 +1,8 @@
+---
+- name: Reset ssh known host key of the vulnbox
+  ansible.builtin.command: ssh-keygen -R {{ groups['vulnbox'][0] }}
+  delegate_to: localhost
+  become: false
+  register: keygen_result
+  changed_when: "'updated' in keygen_result.stdout or 'updated' in keygen_result.stderr"
+  failed_when: false

@@ -1,6 +1,0 @@
----
-- name: Remove old SSH host key
-  ansible.builtin.command: ssh-keygen -R {{ groups['vulnbox'][0] }}
-  delegate_to: localhost
-  become: false
-  failed_when: false
