@@ -2,6 +2,7 @@
 - name: "Set up vulnbox"
   hosts: vulnbox
   roles:
+    - vulnbox/reset-ssh-known-hosts
     - vulnbox/copy-ssh-public-keys
     - vulnbox/install-requirements
     - vulnbox/setup-sniffer
