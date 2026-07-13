@@ -1,8 +1,9 @@
 ---
 - name: Create .tar.gz of the services
-  ansible.builtin.archive:
+  community.general.archive:
     path: /root/*
     dest: /root/services.tar.gz
+    mode: "0644"
     format: gz
 
 - name: Create out directory

@@ -11,5 +11,5 @@
   register: root_contents
 
 - name: Create .tar.gz if there are directories to compress (only once)
-  include_tasks: "targz-services.yml"
+  ansible.builtin.include_tasks: "targz-services.yml"
   when: (root_contents.files | length > 0) and (not services_targz.stat.exists)

@@ -18,5 +18,5 @@
   changed_when: false
 
 - name: Setup firegex
-  include_tasks: "setup-firegex.yml"
+  ansible.builtin.include_tasks: "setup-firegex.yml"
   when: not firegex_volume_info.exists

@@ -6,7 +6,7 @@
     - "*.pub"
 
 - name: Copy ssh keys on the vulnbox
-  ansible.builtin.authorized_key:
+  ansible.posix.authorized_key:
     user: root
     state: present
     key: "{{ ssh_authorized_keys | join('\n') }}"

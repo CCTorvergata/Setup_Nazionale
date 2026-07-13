@@ -16,10 +16,12 @@
   ansible.builtin.template:
     src: services_ports.txt.j2
     dest: "{{ playbook_dir }}/out/services_ports.txt"
+    mode: "0644"
   delegate_to: localhost
 
 - name: Render services_ports_tulip_ready.txt locally
   ansible.builtin.template:
     src: services_ports_tulip_ready.txt.j2
     dest: "{{ playbook_dir }}/out/services_ports_tulip_ready.txt"
+    mode: "0644"
   delegate_to: localhost

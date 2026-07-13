@@ -24,6 +24,7 @@
   delegate_to: localhost
 
 - name: Start firegex
-  ansible.builtin.command: "python3 run.py start --prebuilt --port {{ firegex_port }} --startup-psw {{ firegex_password }}"
-  args:
+  ansible.builtin.command:
+    cmd: "python3 run.py start --prebuilt --port {{ firegex_port }} --startup-psw {{ firegex_password }}"
     chdir: "{{ vulnbox_repos_dir }}/firegex"
+  changed_when: true
